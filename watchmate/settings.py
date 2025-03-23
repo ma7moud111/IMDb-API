@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'watchlist_app',
     'rest_framework',
     'rest_framework.authtoken',
-    'user_app'
+    'user_app',
+    'drf_spectacular',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +137,35 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         
-    ]
+    ],
+    
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'rest_framework.throttling.AnonRateThrottle',
+    #     'rest_framework.throttling.UserRateThrottle'
+    # ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '1/day',
+        'user': '3/day',
+        'review-list': '10/day',
+        'review-create': '1/day',
+    }
+    
+    # 'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 }
+
+
+
+# JWT settings
+
+# SIMPLE_JWT = {
+#     'ROTATE_REFRESH_TOKEN' : True
+# }
+
+
+
+# SPECTACULAR_SETTINGS = {
+#     'TITLE' : 'DRF IMDb',
+    
+# }

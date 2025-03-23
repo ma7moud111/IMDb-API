@@ -10,6 +10,7 @@ urlpatterns = [
     
     
     path('<int:pk>/reviews/', views.ReviewList.as_view()),
-    path('reviews/<int:pk>', views.ReviewDetails.as_view()),
+    path('reviews/<int:pk>/', views.ReviewDetails.as_view()),
+    path('reviews/', views.UserReview.as_view(), name='user-review-detail'),
     path('<int:pk>/review-create/', views.ReviewCreate.as_view()),
 ]
