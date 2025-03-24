@@ -24,6 +24,10 @@ class WatchListSerializer(serializers.ModelSerializer):
         model = WatchList
         fields = '__all__'
         # exclude = ['active']
+        extra_kwargs = {
+            'avg_rating' : {'read_only' : True},
+            'total_ratings' : {'read_only' : True}
+        }
         
 
 
