@@ -12,6 +12,7 @@ from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.throttling import AnonRateThrottle
+from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -64,8 +65,27 @@ class WatchDetailsAV(APIView):
         watchlist = WatchList.objects.get(pk=pk)
         watchlist.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
 
 
+
+class WatchListGV(generics.ListAPIView):
+    queryset = WatchList.objects.all()
+    serializer_class = WatchListSerializer
+    
+    # #########  for filtering ###########
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['title', 'platform__name']
+    
+    # ########### for searching ##########
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ['title', 'platform__name']
+
+
+    ########### for ordering ##########
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['avg_rating']
 
 ################################################################################################
 

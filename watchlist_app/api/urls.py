@@ -2,6 +2,7 @@ from django.urls import path, include
 from . import views
 urlpatterns = [
     path('list/', views.WatchListAV.as_view(), name='movie-list'),
+    path('list2/', views.WatchListGV.as_view(), name='movie-list2'),
     path('<int:pk>/', views.WatchDetailsAV.as_view(), name='movie-details'),
     path('stream/', views.StreamPlatformListAV.as_view(), name='stream'),
     path('stream/<int:pk>', views.StreamPlatformDetailsAV.as_view(), name='stream-details'),
