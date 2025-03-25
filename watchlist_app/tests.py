@@ -60,3 +60,29 @@ class StreamPlatformTestCase(APITestCase):
         print("======== running streamplatform delete test ==============")
         response = self.client.delete(reverse('stream-details', args=(self.stream.id,)))
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        
+        
+        
+        
+
+
+class WatchListTestCase(APITestCase):
+    
+    def setUp(self):
+        self.user = User.objects.create_user(username='example', password='pass@123')
+        self.token = Token.objects.get(user__username=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        
+        self.stream = models.StreamPlatform.objects.create(name="hulu", about="streaming platform", website="https://hulu.net")
+
+    
+    def test_watchlist_create(self):
+        print("======== running watchlist create test ==============")
+        data = {
+            "title": "test title",
+            "storyline": "test storyline",
+            "platform": self.stream,
+            "active": True,
+        }
+        response = self.client.post(reverse('movie-list'), data=data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
