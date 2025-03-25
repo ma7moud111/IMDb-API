@@ -10,7 +10,7 @@ from django.urls import reverse
 class RegisterTestCase(APITestCase):
     
     def test_register(self):
-        
+        print("======== running user registration test ==============")
         data = {
             "username" : "testuser",
             "email" : "testuser@example.com",
@@ -23,7 +23,6 @@ class RegisterTestCase(APITestCase):
 
 
 
-
 class LoginLogoutTestCase(APITestCase):
     
     def setUp(self):
@@ -31,6 +30,7 @@ class LoginLogoutTestCase(APITestCase):
        
         
     def test_login(self):
+        print("======== running user login test ==============")
         data = {
             "username" : "example",
             "password" : "pass@123",
@@ -40,6 +40,7 @@ class LoginLogoutTestCase(APITestCase):
         
         
     def test_logout(self):
+        print("======== running user logout test ==============")
         self.token = Token.objects.get(user__username='example')
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         response = self.client.post(reverse('logout'))
