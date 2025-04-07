@@ -84,10 +84,4 @@ python manage.py runserver
 
 <h3>5. Access the API</h3>
 
-<pre>
-<code>
-http://127.0.0.1:8000/api/
-</code>
-</pre>
-
 <hr />
